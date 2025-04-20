@@ -1,2 +1,2 @@
 Flask==2.3.3
-feedparser
+feedparser==6.0.11
