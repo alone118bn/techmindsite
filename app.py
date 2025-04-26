@@ -1,8 +1,9 @@
 from flask import Flask, render_template
 import os
 import feedparser
+from flask_admin import Admin
 
-app = Flask(__name__)
+app = Flask(name)
 
 RSS_FEEDS = {
     "tech": [
@@ -34,6 +35,9 @@ def home():
     articles = get_news()
     return render_template("index.html", articles=articles)
 
-if __name__ == "__main__":
+# ИНИЦИАЛИЗАЦИЯ АДМИНКИ
+admin = Admin(app, name='TechMind Admin', template_mode='bootstrap4')
+
+if name == "main":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=True)
