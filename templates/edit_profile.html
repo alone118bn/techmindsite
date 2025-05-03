@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ _('Edit Profile') }}</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="avatar" class="form-label">{{ _('Upload Avatar') }}</label>
+            <input class="form-control" type="file" id="avatar" name="avatar">
+        </div>
+        <button type="submit" class="btn btn-primary">{{ _('Submit') }}</button>
+    </form>
+</div>
+{% endblock %}

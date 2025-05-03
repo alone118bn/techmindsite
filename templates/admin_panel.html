@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Админ-панель</h2>
+    <table class="table table-bordered table-striped mt-4">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Avatar</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    {% if user.avatar_filename %}
+                        <img src="{{ url_for('static', filename='uploads/' ~ user.avatar_filename) }}" width="40" height="40" class="rounded-circle">
+                    {% else %}
+                        <span class="text-muted">—</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <!-- Пример: Редактирование ролей, удаление и т.д. (позже) -->
+                    <a href="#" class="btn btn-sm btn-secondary disabled">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
