@@ -10,12 +10,15 @@ import os
 import uuid
 from werkzeug.utils import secure_filename
 from flask_migrate import Migrate
+from flask_babel import Babel, get_locale
 
 # Инициализация приложения
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key_here'  # Замените на безопасный ключ!
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['BABEL_DEFAULT_LOCALE'] = 'ru'
+bael = Babel(app)
 
 # Инициализация расширений
 db = SQLAlchemy(app)
@@ -23,6 +26,10 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 admin = Admin(app, name='TechMind Admin', template_mode='bootstrap4')
 migrate = Migrate(app, db)
+
+@app.context_processor
+def inject_get_locale():
+    return dict(get_locale=get_locale)
 
 # Переводы
 translations = {
